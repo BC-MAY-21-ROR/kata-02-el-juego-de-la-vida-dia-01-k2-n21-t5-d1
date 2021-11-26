@@ -1,25 +1,66 @@
-
 puts("Enter the height value: ")
 height=gets.chomp.to_i
 
 puts("Enter the width value: ")
 width=gets.chomp.to_i
 
+matrix2=Array.new(height){Array.new(width)}
+
 matrix=Array.new(height){Array.new(width)}
-vivo=true
-mid_height = (height/2).to_i
-mid_width = (width/2).to_i
+
 
 
 height.times do |x|
   width.times do |y|
-    
-    if (y==mid_width && x==mid_height)||(y==mid_width-1 && x==mid_height)||(y==mid_width && x==mid_height-1)
-      matrix[x][y]=vivo
+    num = rand(2)
+    matrix[x][y]= num
+    if matrix[x][y] == 1
       print ("*")
+    
     else
       print (".")
     end
   end
   puts
 end
+
+
+matrix2=matrix
+
+height.times do |x|
+  width.times do |y|
+
+    vecino= 0;
+    if x>0 &&x<height
+      if y>0 && y<width
+        if matrix2[x-1][y] == 1
+          vecino = vecino + 1
+        end
+        if matrix2[x+1][y] == 1
+          vecino = vecino + 1
+        end
+        if matrix2[x][y-1] == 1
+          vecino = vecino + 1
+        end
+        if matrix2[x][y+1] == 1
+          vecino = vecino + 1
+        end
+        if matrix2[x+1][y-1] == 1
+          vecino = vecino + 1
+        end
+        if matrix2[x-1][y+1] == 1
+          vecino = vecino + 1
+        end
+        if matrix2[x-1][y-1] == 1
+          vecino = vecino + 1
+        end
+         
+        if matrix2[x+1][y+1] == 1
+          vecino = vecino + 1
+        end
+      end
+    end
+    p vecino    
+  end 
+end 
+
